@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+</head>
+<body>
+
+    <div>
+        <ul>
+            {% for i in students %}
+                <li>
+                    <div>
+                        Name: {{i.firstname  }}
+                    </div>
+
+                    <div>
+                        Surname : {{ i.lastname }}
+
+                    </div>
+                    <div>
+                        Age : {{ i.age }}
+                    </div>
+                    <div>
+                        University : {{ i.university }}
+
+                    </div>
+                    <div>
+                        Faculty : {{ i.faculty }}
+                    </div>
+                    <div>
+                        Gender : {{ i.gender }}
+                    </div>
+                    <br>
+
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
