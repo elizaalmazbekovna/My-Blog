@@ -8,8 +8,26 @@
 <body>
     <ul>
         <div>
+
+            {% if request.user.is_authenticated %}
+                <div>
+                    <span>
+                        Hi {{ request.user.first_name }} {{ request.user.last_name }}
+                    </span>
+                    <span>
+                        <a href="/createpost/">Add a new post</a>
+                    </span>
+                      <p><a href="/accounts/logout/">Log Out</a></p>>
+                </div>
+
+            {% else %}
+
+                <p>You are not logged in</p>
+                <a href="/Users/login/">Log In</a>
+            {% endif %}
             {% for i in blog %}
-                <p> {{ i.title }}</p>
+                <a href="/blog/{{ i.id }}"><p> {{ i.title }}</p></a>
+
                 <p><img src="../media/{{ i.image }}" alt="" width="600px" height="400px"/></p>
                 <p>{{ i.description }}</p>
                 <p>{{ i.hashtag }}</p>

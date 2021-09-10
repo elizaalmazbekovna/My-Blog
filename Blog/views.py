@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 
 from Blog.models import Students, Blog, Comment
 from django.views import generic
+from rest_framework.generics import ListAPIView
 
 class BlogView(generic.ListView):
     template_name = "blog.html"
@@ -50,7 +51,9 @@ def student_view(request):
 
     return render(request,'student.html',context=data)
 
-from Blog.forms import BlogForm
+from Blog.forms import BlogForm, BlogSerializer
+
+
 def create_post(request):
     if request.method== "POST":
         form = request.POST
@@ -64,3 +67,8 @@ def create_post(request):
         return redirect ('/blog/')
     if request.method =="GET":
         return render(request,'create_post.html')
+
+
+class BlogListApiView(ListAPIView):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer

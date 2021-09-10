@@ -15,17 +15,23 @@ Including another URLconf
 """
 from django.conf import settings
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from Blog import views
 from django.conf.urls.static import static
+
+from Users.views import MyLoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/<int:pk>/',views.BlogDetailView.as_view()),
-    path('blog/', views.BlogView.as_view()),
+    path('blog/', views.BlogView.as_view(),name='blogs'),
+    path('Users/', include('Users.urls')),
+    path('accounts/', include('allauth.urls')),
     path('today/', views.saw_date),
     path('image/', views.image_view),
     path('createpost/', views.create_post),
     path('students/', views.student_view),
+    path('accounts/login/',MyLoginView.as_view()),
+    path('blog-data/', views.BlogListApiView.as_view()),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
               static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
