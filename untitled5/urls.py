@@ -24,7 +24,7 @@ from Users.views import MyLoginView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/<int:pk>/',views.BlogDetailView.as_view()),
-    path('blog/', views.BlogView.as_view(),name='blogs'),
+    path('blog/', views.BlogView.as_view(), name='blogs'),
     path('Users/', include('Users.urls')),
     path('accounts/', include('allauth.urls')),
     path('today/', views.saw_date),

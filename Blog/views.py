@@ -14,6 +14,17 @@ class BlogView(generic.ListView):
     queryset =Blog.objects.all()
     context_object_name = "blog"
 
+    def get_queryset(self):
+        qs = super(BlogView, self).get_queryset()
+        start_date = self.request.GET.get('start_date',None)
+        end_date = self.request.GET.get('end_date',None)
+        search = self.request.GET.get('search','')
+        if start_date and end_date:
+            qs = qs.filter(date__gte = start_date,date__lte =end_date)
+
+        qs= qs.filter(title__icontains=search)
+        return qs
+
 class BlogDetailView(generic.DetailView):
     template_name = "detail.html"
     queryset = Blog.objects.all()

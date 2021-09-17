@@ -6,6 +6,13 @@
     <title>Blog</title>
 </head>
 <body>
+    <div>
+        <label>
+            Search blogs
+            <input type="text">
+        </label>
+        <button onclick="search()">Search</button>
+    </div>
     <ul>
         <div>
 
@@ -35,5 +42,14 @@
             {% endfor %}
         </div>
     </ul>
+
+    <script>
+        function search() {
+            let searchText = document.getElementById('search-box').value;
+            let newUrl = location.protocol +"//" + location.host + "/blog/?" + "search=" + searchText
+            window.open(newUrl)
+
+        }
+    </script>
 </body>
 </html>

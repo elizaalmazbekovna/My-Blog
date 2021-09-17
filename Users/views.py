@@ -22,7 +22,7 @@ def register_view(request):
 
         if password2 != password:
             return HttpResponse("Passwords does not match!!!")
-        user = BlogUser.objects.create_user(username=email,first_name=first_name,last_name=last_name,age=age,email=email,
+        user = BlogUser.objects.create_user(username='awdawd', first_name=first_name,last_name=last_name,age=age,email=email,
                                             password=password)
 
         return HttpResponse("Registered successfully!!!")
